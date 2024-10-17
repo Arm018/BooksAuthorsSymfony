@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to BookStore!{% endblock %}
+
+{% block body %}
+    <style>
+        .home-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+            text-align: center;
+        }
+        .home-wrapper h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .home-wrapper p {
+            font-size: 1.2em;
+            margin-bottom: 1.5em;
+        }
+        .home-wrapper .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .home-wrapper .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="home-wrapper">
+        <h1>Welcome to Our BookStore!</h1>
+        <p>Find your next favorite book here. Browse our wide selection of books.</p>
+
+        <a href="{{ path('app_books') }}" class="btn">Explore Books</a>
+    </div>
+{% endblock %}
