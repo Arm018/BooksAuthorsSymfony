@@ -1,44 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome to BookStore!{% endblock %}
+{% block title %}BookStore{% endblock %}
 
 {% block body %}
-    <style>
-        .home-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-            text-align: center;
-        }
-        .home-wrapper h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-        }
-        .home-wrapper p {
-            font-size: 1.2em;
-            margin-bottom: 1.5em;
-        }
-        .home-wrapper .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .home-wrapper .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <div class="site-index">
 
-    <div class="home-wrapper">
-        <h1>Welcome to Our BookStore!</h1>
-        <p>Find your next favorite book here. Browse our wide selection of books.</p>
+        <div class="jumbotron text-center bg-transparent">
+            <h1 class="display-4">BookStore</h1>
+            <p class="lead">Welcome to BookStore. See all the books and authors with ease.</p>
+        </div>
 
-        <a href="{{ path('app_books') }}" class="btn">Explore Books</a>
+        <div class="body-content">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Books</h5>
+                            <p class="card-text">View books.</p>
+                            <a href="{{ path('app_books') }}" class="btn btn-outline-secondary">Watch Books</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Authors</h5>
+                            <p class="card-text">View authors.</p>
+                            <a href="#" class="btn btn-outline-secondary">Watch Authors</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
