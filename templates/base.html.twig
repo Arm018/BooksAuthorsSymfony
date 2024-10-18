@@ -42,12 +42,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_books') }}">Books</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_register') }}">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_login') }}">Login</a>
-            </li>
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                    <form method="post" action="{{ path('app_logout') }}">
+                        <button type="submit" class="btn btn-link nav-link">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_register') }}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
