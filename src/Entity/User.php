@@ -14,6 +14,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    public function __construct()
+    {
+        $this->roles = ['ROLE_USER'];
+    }
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -29,13 +33,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+        private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
+
+    private $plainPassword;
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
 
     public function getId(): ?int
     {
@@ -77,11 +103,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return array_unique($this->roles);
     }
 
     public function setRoles(array $roles): self
@@ -124,5 +146,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+        $this->plainPassword = null;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }
