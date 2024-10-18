@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authors{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Authors</h1>
+
+        <p>
+            <a href="{{ path('app_admin_author_create') }}" class="btn btn-success">Create Author</a>
+        </p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Biography</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.firstName }}</td>
+                    <td>{{ author.lastName }}</td>
+                    <td>{{ author.biography|slice(0, 50) }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_author_edit', {'id': author.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                        <form action="{{ path('app_admin_author_delete', {'id': author.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">No authors found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

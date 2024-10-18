@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+    <div class="jumbotron text-center bg-transparent">
+        <h2 class="display-4">Welcome to Admin Dashboard!</h2>
+
+        <div style="margin-top: 50px">
+            <a href="" class="btn btn-outline-secondary">Manage Books</a>
+            <a href="{{ path('app_admin_author') }}" class="btn btn-outline-secondary">Manage Authors</a>
+        </div>
+    </div>
+{% endblock %}

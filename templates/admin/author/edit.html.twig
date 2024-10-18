@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Author{% endblock %}
+
+{% block body %}
+    <div class="author-edit">
+
+        <h1>Edit Author: {{ author.firstName }} {{ author.lastName }}</h1>
+
+        {{ form_start(form) }}
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name) }}
+        {{ form_row(form.biography) }}
+        <button class="btn btn-success">Save Changes</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
