@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ author.firstName }} {{ author.lastName }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+
+        <h4>Biography</h4>
+        <p>{{ author.biography }}</p>
+
+        <h4>Books by {{ author.firstName }}:</h4>
+        <ul>
+            {% if author.books is empty %}
+                <li>No books available for this author.</li>
+            {% else %}
+                {% for book in author.books %}
+                    <li>
+                        <a href="{{ path('app_book_show', { id: book.id }) }}">{{ book.title }}</a>
+                        (Published: {{ book.publicationYear }})
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        <a href="{{ path('app_authors') }}" class="btn btn-secondary">Back to Authors List</a>
+    </div>
+{% endblock %}
