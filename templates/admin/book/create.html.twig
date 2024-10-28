@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Create Book{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Create Book</h1>
+
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.publicationYear) }}
+        {{ form_row(form.author) }}
+        <button type="submit" class="btn btn-success">Create</button>
+        {{ form_end(form) }}
+
+        <p>
+            <a href="{{ path('app_admin_book') }}" class="btn btn-secondary">Back to Book List</a>
+        </p>
+    </div>
+{% endblock %}
