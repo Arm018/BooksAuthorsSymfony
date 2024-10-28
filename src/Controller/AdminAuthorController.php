@@ -44,9 +44,9 @@ class AdminAuthorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($author);
-            $entityManager->flush();
+
+            $this->entityManager->persist($author);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_admin_author');
         }
@@ -66,8 +66,7 @@ class AdminAuthorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->flush();
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_admin_author');
         }

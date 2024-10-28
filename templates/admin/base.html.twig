@@ -33,14 +33,14 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ path('app_home') }}">BookStore</a>
+    <a class="navbar-brand" href="{{ path('app_admin') }}">BookStore</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_books') }}">Books</a>
+                <a class="nav-link" href="{{ path('app_admin_author') }}">Authors</a>
             </li>
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -48,13 +48,6 @@
                     <form method="post" action="{{ path('app_logout') }}">
                         <button type="submit" class="btn btn-link nav-link">Logout</button>
                     </form>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_register') }}">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                 </li>
             {% endif %}
         </ul>
