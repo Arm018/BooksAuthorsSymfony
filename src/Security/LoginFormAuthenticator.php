@@ -23,10 +23,14 @@ class LoginFormAuthenticator extends AbstractAuthenticator
     private $userRepository;
     private $routerInterface;
 
-    public function __construct(UserRepository $userRepository, RouterInterface $routerInterface)
+    private $security;
+
+    public function __construct(UserRepository $userRepository, RouterInterface $routerInterface, Security $security)
     {
         $this->userRepository = $userRepository;
         $this->routerInterface = $routerInterface;
+        $this->security = $security;
+
     }
 
     public function supports(Request $request): ?bool
@@ -55,6 +59,12 @@ class LoginFormAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return new RedirectResponse(
+                $this->routerInterface->generate('app_admin')
+            );
+        }
+
         return new RedirectResponse(
             $this->routerInterface->generate('app_home')
         );

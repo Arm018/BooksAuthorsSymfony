@@ -27,6 +27,7 @@ class AdminAuthorController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $authors = $this->authorRepository->findAll();
         return $this->render('admin/author/index.html.twig', [
             'authors' => $authors,
