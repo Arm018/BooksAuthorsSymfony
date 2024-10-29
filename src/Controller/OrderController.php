@@ -22,6 +22,7 @@ class OrderController extends AbstractController
      */
     public function create(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $selectedBooks = $request->request->get('selected_books', []);
         $quantities = $request->request->get('quantity', []);
 
