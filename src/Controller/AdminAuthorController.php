@@ -4,8 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Author;
 use App\Form\AuthorType;
-use App\Repository\AuthorRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\AuthorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,13 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminAuthorController extends AbstractController
 {
-    private $authorRepository;
-    private $entityManager;
+    private $authorService;
 
-    public function __construct(AuthorRepository $authorRepository, EntityManagerInterface $entityManager)
+    public function __construct(AuthorService $authorService)
     {
-        $this->entityManager = $entityManager;
-        $this->authorRepository = $authorRepository;
+        $this->authorService = $authorService;
     }
 
     /**
@@ -28,7 +25,9 @@ class AdminAuthorController extends AbstractController
     public function index(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $authors = $this->authorRepository->findAll();
+
+        $authors = $this->authorService->getAllAuthors();
+
         return $this->render('admin/author/index.html.twig', [
             'authors' => $authors,
         ]);
@@ -45,9 +44,7 @@ class AdminAuthorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $this->entityManager->persist($author);
-            $this->entityManager->flush();
+            $this->authorService->createAuthor($author);
 
             return $this->redirectToRoute('app_admin_author');
         }
@@ -67,7 +64,7 @@ class AdminAuthorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
+            $this->authorService->updateAuthor();
 
             return $this->redirectToRoute('app_admin_author');
         }
@@ -83,13 +80,10 @@ class AdminAuthorController extends AbstractController
      */
     public function delete(Request $request, Author $author): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$author->getId(), $request->request->get('_token'))) {
-            $this->entityManager->remove($author);
-            $this->entityManager->flush();
+        if ($this->isCsrfTokenValid('delete' . $author->getId(), $request->request->get('_token'))) {
+            $this->authorService->deleteAuthor($author);
         }
 
         return $this->redirectToRoute('app_admin_author');
     }
-
-
 }

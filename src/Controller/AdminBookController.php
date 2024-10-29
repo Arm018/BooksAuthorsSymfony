@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
+use App\Service\BookService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,13 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminBookController extends AbstractController
 {
-    private $entityManager;
-    private $bookRepository;
+    private $bookService;
 
-    public function __construct(EntityManagerInterface $entityManager, BookRepository $bookRepository)
+    public function __construct(BookService $bookService)
     {
-        $this->entityManager = $entityManager;
-        $this->bookRepository = $bookRepository;
+        $this->bookService = $bookService;
     }
 
     /**
@@ -28,7 +27,7 @@ class AdminBookController extends AbstractController
     public function index(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $books = $this->bookRepository->findAll();
+        $books = $this->bookService->getAllBooks();
 
         return $this->render('admin/book/index.html.twig', [
             'books' => $books,
@@ -45,8 +44,7 @@ class AdminBookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($book);
-            $this->entityManager->flush();
+            $this->bookService->createBook($book);
 
             return $this->redirectToRoute('app_admin_book');
         }
@@ -65,7 +63,7 @@ class AdminBookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
+            $this->bookService->updateBook();
 
             return $this->redirectToRoute('app_admin_book');
         }
@@ -82,8 +80,7 @@ class AdminBookController extends AbstractController
     public function delete(Request $request, Book $book): Response
     {
         if ($this->isCsrfTokenValid('delete' . $book->getId(), $request->request->get('_token'))) {
-            $this->entityManager->remove($book);
-            $this->entityManager->flush();
+            $this->bookService->deleteBook($book);
         }
 
         return $this->redirectToRoute('app_admin_book');
