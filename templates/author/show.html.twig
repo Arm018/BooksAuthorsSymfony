@@ -6,10 +6,10 @@
     <div class="container mt-5">
         <h1>{{ author.firstName }} {{ author.lastName }}</h1>
 
-        <h4>Biography</h4>
+        <h4 class="mt-4">Կենսագրություն</h4>
         <p>{{ author.biography }}</p>
 
-        <h4>Books by {{ author.lastName }}:</h4>
+        <h4>{{ author.lastName }}ի գրքերը:</h4>
         <ul>
             {% if author.books is empty %}
                 <li>No books available for this author.</li>
@@ -17,12 +17,12 @@
                 {% for book in author.books %}
                     <li>
                         <a href="{{ path('app_book_show', { id: book.id }) }}">{{ book.title }}</a>
-                        (Published: {{ book.publicationYear }})
+                        (Հրատարակված: {{ book.publicationYear }}թ․)
                     </li>
                 {% endfor %}
             {% endif %}
         </ul>
 
-        <a href="{{ path('app_authors') }}" class="btn btn-secondary">Back to Authors List</a>
+        <a href="{{ path('app_authors') }}" class="btn btn-secondary">Վերադառնալ Հեղինակների Ցուցակին</a>
     </div>
 {% endblock %}
