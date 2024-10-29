@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Create Author{% endblock %}
+{% block title %}Ստեղծել Հեղինակի{% endblock %}
 
 {% block body %}
     <div class="author-create">
@@ -9,7 +9,7 @@
         {{ form_row(form.first_name) }}
         {{ form_row(form.last_name) }}
         {{ form_row(form.biography) }}
-        <button class="btn btn-success">Create Author</button>
+        <button class="btn btn-success">Ստեղծել</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}
