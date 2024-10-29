@@ -38,6 +38,11 @@ class Book
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="decimal", precision=8, scale=2)
+     */
+    private $price;
+
     public function getAuthor(): ?Author
     {
         return $this->author;
@@ -87,6 +92,18 @@ class Book
     public function setPublicationYear(int $publication_year): self
     {
         $this->publication_year = $publication_year;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

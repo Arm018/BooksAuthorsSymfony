@@ -25,7 +25,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <h5 class="card-title">{{ book.title }}</h5>
-                        <p class="card-text"><strong>Publication Year:</strong> {{ book.publicationYear }}</p>
+                        <p class="card-text"><strong>Price:</strong> {{ book.price }}</p>
                         <p class="card-text"><strong>Author:</strong> {{ book.author.firstName }} {{ book.author.lastName }}</p>
                         <a href="{{ path('app_book_show', { 'id': book.id }) }}" class="btn btn-primary">View</a>
                     </div>

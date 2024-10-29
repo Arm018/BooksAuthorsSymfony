@@ -54,7 +54,7 @@
                 </li>
                 <li class="nav-item">
                     <form method="post" action="{{ path('app_logout') }}">
-                        <button type="submit" class="btn btn-link nav-link">Logout ({{ app.user.username }})</button>
+                        <button type="submit" class="btn btn-link nav-link">Logout ({{ app.user.email }})</button>
                     </form>
                 </li>
             {% else %}

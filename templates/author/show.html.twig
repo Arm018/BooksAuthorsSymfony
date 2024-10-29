@@ -9,7 +9,7 @@
         <h4>Biography</h4>
         <p>{{ author.biography }}</p>
 
-        <h4>Books by {{ author.firstName }}:</h4>
+        <h4>Books by {{ author.lastName }}:</h4>
         <ul>
             {% if author.books is empty %}
                 <li>No books available for this author.</li>

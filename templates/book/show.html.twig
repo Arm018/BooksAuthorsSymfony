@@ -8,6 +8,7 @@
         <p><strong>Description:</strong> {{ book.description }}</p>
         <p><strong>Publication Year:</strong> {{ book.publicationYear }}</p>
         <p><strong>Author:</strong> {{ book.author.firstName }} {{ book.author.lastName }}</p>
+        <p><strong>Price:</strong> {{ book.price }}</p>
 
         <a href="{{ path('app_books') }}" class="btn btn-secondary">Back to Books</a>
     </div>

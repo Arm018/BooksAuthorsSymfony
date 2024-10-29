@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Author;
 use App\Entity\Book;
+use Doctrine\DBAL\Types\DecimalType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,6 +20,7 @@ class BookType extends AbstractType
             ->add('title', TextType::class)
             ->add('description', TextType::class)
             ->add('publicationYear', IntegerType::class)
+            ->add('price', DecimalType::class)
             ->add('author', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => function (Author $author) {
