@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Account{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>My Account</h1>
+
+        <div class="my-4">
+            <h3>Balance</h3>
+            <p>Your balance is <strong>${{ balance }}</strong></p>
+        </div>
+
+        <div class="my-4">
+            <h3>Purchased Books</h3>
+
+{#            {% if orders is not empty %}#}
+{#                <table class="table table-bordered">#}
+{#                    <thead>#}
+{#                    <tr>#}
+{#                        <th>Order ID</th>#}
+{#                        <th>Book Title</th>#}
+{#                        <th>Purchase Date</th>#}
+{#                        <th>Price</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    {% for order in orders %}#}
+{#                        {% for item in order.orderItems %}#}
+{#                            <tr>#}
+{#                                <td>{{ order.id }}</td>#}
+{#                                <td>{{ item.book.title }}</td>#}
+{#                                <td>{{ order.createdAt|date('Y-m-d H:i') }}</td>#}
+{#                                <td>{{ item.price }} credits</td>#}
+{#                            </tr>#}
+{#                        {% endfor %}#}
+{#                    {% endfor %}#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            {% else %}#}
+{#                <p>You have not purchased any books yet.</p>#}
+{#            {% endif %}#}
+        </div>
+    </div>
+{% endblock %}

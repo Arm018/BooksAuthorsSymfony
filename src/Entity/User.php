@@ -17,6 +17,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
+        $this->balance = new Balance();
+        $this->balance->setUser($this);
     }
     /**
      * @ORM\Id
@@ -62,6 +64,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $username;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Balance::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $balance;
 
     public function getId(): ?int
     {
@@ -152,6 +159,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getBalance(): ?Balance
+    {
+        return $this->balance;
+    }
+
+    public function setBalance(Balance $balance): self
+    {
+        $this->balance = $balance;
+
+        if ($balance->getUser() !== $this) {
+            $balance->setUser($this);
+        }
 
         return $this;
     }
