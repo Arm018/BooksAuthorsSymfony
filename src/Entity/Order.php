@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Order
 {
+    public function __construct()
+    {
+        $this->orderItems = new ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -77,7 +83,7 @@ class Order
         $this->updatedAt = $updatedAt;
     }
 
-    public function getOrderItems(): ArrayCollection
+    public function getOrderItems(): Collection
     {
         return $this->orderItems;
     }
@@ -85,11 +91,6 @@ class Order
     public function setOrderItems(ArrayCollection $orderItems): void
     {
         $this->orderItems = $orderItems;
-    }
-
-    public function __construct()
-    {
-        $this->orderItems = new ArrayCollection();
     }
 
     public function getId(): ?int

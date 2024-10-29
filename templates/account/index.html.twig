@@ -8,38 +8,38 @@
 
         <div class="my-4">
             <h3>Դրամապանակ</h3>
-            <p>Ձեր հաշվում կա <strong>${{ balance }}</strong></p>
+            <p>Ձեր հաշվին կա <strong>${{ balance }}</strong></p>
         </div>
 
         <div class="my-4">
-            <h3>Purchased Books</h3>
+            <h3>Ձեր Պատվիրած Գրքերը</h3>
 
-{#            {% if orders is not empty %}#}
-{#                <table class="table table-bordered">#}
-{#                    <thead>#}
-{#                    <tr>#}
-{#                        <th>Order ID</th>#}
-{#                        <th>Book Title</th>#}
-{#                        <th>Purchase Date</th>#}
-{#                        <th>Price</th>#}
-{#                    </tr>#}
-{#                    </thead>#}
-{#                    <tbody>#}
-{#                    {% for order in orders %}#}
-{#                        {% for item in order.orderItems %}#}
-{#                            <tr>#}
-{#                                <td>{{ order.id }}</td>#}
-{#                                <td>{{ item.book.title }}</td>#}
-{#                                <td>{{ order.createdAt|date('Y-m-d H:i') }}</td>#}
-{#                                <td>{{ item.price }} credits</td>#}
-{#                            </tr>#}
-{#                        {% endfor %}#}
-{#                    {% endfor %}#}
-{#                    </tbody>#}
-{#                </table>#}
-{#            {% else %}#}
-{#                <p>You have not purchased any books yet.</p>#}
-{#            {% endif %}#}
+            {% if orders is not empty %}
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Պատվերի ID</th>
+                        <th>Գրքի Վերնագիրը</th>
+                        <th>Գնման ժամանակը</th>
+                        <th>Գինը</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        {% for item in order.orderItems %}
+                            <tr>
+                                <td>{{ order.id }}</td>
+                                <td>{{ item.book.title }}</td>
+                                <td>{{ order.createdAt|date('Y-m-d H:i') }}</td>
+                                <td>${{ item.price }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Դուք չունեք պատվիրած գրքեր․</p>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
