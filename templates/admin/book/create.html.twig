@@ -10,12 +10,13 @@
         {{ form_row(form.title) }}
         {{ form_row(form.description) }}
         {{ form_row(form.publicationYear) }}
+        {{ form_row(form.price) }}
         {{ form_row(form.author) }}
         <button type="submit" class="btn btn-success">Create</button>
         {{ form_end(form) }}
 
-        <p>
-            <a href="{{ path('app_admin_book') }}" class="btn btn-secondary">Back to Book List</a>
+        <p style="margin-top: 10px">
+            <a href="{{ path('app_admin_book') }}" class="btn btn-secondary">Go Back</a>
         </p>
     </div>
 {% endblock %}

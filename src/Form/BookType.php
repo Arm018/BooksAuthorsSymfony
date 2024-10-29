@@ -20,7 +20,7 @@ class BookType extends AbstractType
             ->add('title', TextType::class)
             ->add('description', TextType::class)
             ->add('publicationYear', IntegerType::class)
-            ->add('price', DecimalType::class)
+            ->add('price', IntegerType::class)
             ->add('author', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => function (Author $author) {

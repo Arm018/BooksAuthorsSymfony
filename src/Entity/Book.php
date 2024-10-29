@@ -33,15 +33,15 @@ class Book
     private $publication_year;
 
     /**
+     * @ORM\Column(type="decimal", precision=8, scale=2)
+     */
+    private $price;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
-
-    /**
-     * @ORM\Column(type="decimal", precision=8, scale=2)
-     */
-    private $price;
 
     public function getAuthor(): ?Author
     {
