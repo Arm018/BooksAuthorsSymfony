@@ -1,24 +1,24 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Books{% endblock %}
+{% block title %}Գրքեր{% endblock %}
 
 {% block body %}
     <div class="container mt-5">
-        <h1>Books</h1>
+        <h1>Գրքեր</h1>
 
         <p>
-            <a href="{{ path('app_admin_book_create') }}" class="btn btn-success">Create Book</a>
+            <a href="{{ path('app_admin_book_create') }}" class="btn btn-success">Ստեղծել Գիրք</a>
         </p>
 
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Publication Year</th>
-                <th>Author</th>
-                <th>Actions</th>
+                <th>Վերնագիր</th>
+                <th>Նկարագրություն</th>
+                <th>Հրատարակման տարին</th>
+                <th>Հեղինակ</th>
+                <th>Գործողություններ</th>
             </tr>
             </thead>
             <tbody>
@@ -30,17 +30,17 @@
                     <td>{{ book.publicationYear }}</td>
                     <td>{{ book.author.firstName }} {{ book.author.lastName }}</td>
                     <td>
-                        <a href="{{ path('app_admin_book_edit', {'id': book.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ path('app_admin_book_edit', {'id': book.id}) }}" class="btn btn-primary btn-sm">Փոփոխել</a>
 
                         <form action="{{ path('app_admin_book_delete', {'id': book.id}) }}" method="post" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this book?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            <button class="btn btn-danger btn-sm" type="submit">Ջնջել</button>
                         </form>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6" class="text-center">No books found</td>
+                    <td colspan="6" class="text-center">Ոչ մի գիրք չի գտնվել</td>
                 </tr>
             {% endfor %}
             </tbody>

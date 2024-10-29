@@ -1,10 +1,10 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Edit Book{% endblock %}
+{% block title %}Փոփոխել Գիրքը{% endblock %}
 
 {% block body %}
     <div class="author-edit">
-        <h1>Edit Book</h1>
+        <h1>Փոփոխել Գիրքը</h1>
 
         {{ form_start(form) }}
         {{ form_row(form.title) }}
@@ -12,7 +12,7 @@
         {{ form_row(form.publicationYear) }}
         {{ form_row(form.price) }}
         {{ form_row(form.author) }}
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">Փոփոխել</button>
         {{ form_end(form) }}
 
     </div>
