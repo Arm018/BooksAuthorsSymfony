@@ -5,7 +5,7 @@
 {% block body %}
     <style>
         .card {
-            margin: 15px 0; /* Add vertical margin for spacing between cards */
+            margin: 15px 0;
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -16,29 +16,47 @@
         .pagination {
             justify-content: center;
         }
+        .quantity-input {
+            width: 60px;
+            margin-left: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+        }
     </style>
 
     <div class="container mt-5">
         <h1 class="text-center">Վաճառքի Գրքեր</h1>
-        <div class="row">
-            {% for book in books %}
-                <div class="col-md-3"></div>
-                <div class="col-md-7">
-                    <div class="card">
-                        <h5 class="card-title text-center">{{ book.title }}</h5>
-                        <p class="card-text text-center"><strong>Գինը:</strong> ${{ book.price }}</p>
-                        <p class="card-text text-center"><strong>Հեղինակը:</strong> {{ book.author.firstName }} {{ book.author.lastName }}</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="{{ path('app_book_show', { 'id': book.id }) }}" class="btn btn-secondary">Ավելին</a>
-                            <a href="" class="btn btn-success ml-3">Գնել Հիմա</a>
+        <form method="post" action="{{ path('app_order_create') }}">
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-2"></div>
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center">
+                            <input type="checkbox" name="selected_books[]" value="{{ book.id }}" id="book-{{ book.id }}" class="mr-2">
+                            <label for="book-{{ book.id }}" class="ml-2"></label>
+                            <div class="card flex-fill">
+                                <h5 class="card-title text-center">{{ book.title }}</h5>
+                                <p class="card-text text-center"><strong>Գինը:</strong> ${{ book.price }}</p>
+                                <p class="card-text text-center"><strong>Հեղինակը:</strong> {{ book.author.firstName }} {{ book.author.lastName }}</p>
+                                <div class="d-flex justify-content-center">
+                                    <input type="number" name="quantity[{{ book.id }}]" min="1" value="1" class="quantity-input">
+                                    <a href="{{ path('app_book_show', { 'id': book.id }) }}" class="btn btn-secondary ml-3">Ավելին</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-2"></div>
-            {% else %}
-                <p>No books found.</p>
-            {% endfor %}
-        </div>
+                    <div class="col-md-2"></div>
+                {% else %}
+                    <p>No books found.</p>
+                {% endfor %}
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Գնել Ընտրածները</button>
+            </div>
+        </form>
 
         <div class="pagination mt-4">
             {{ knp_pagination_render(books) }}
