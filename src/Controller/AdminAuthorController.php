@@ -49,8 +49,8 @@ class AdminAuthorController extends AbstractController
             return $this->redirectToRoute('app_admin_author');
         }
 
-        return $this->render('admin/author/create.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('admin/author/create.html.twig', [
+            'form' => $form,
         ]);
     }
 
@@ -69,8 +69,8 @@ class AdminAuthorController extends AbstractController
             return $this->redirectToRoute('app_admin_author');
         }
 
-        return $this->render('admin/author/edit.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('admin/author/edit.html.twig', [
+            'form' => $form,
             'author' => $author,
         ]);
     }

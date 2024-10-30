@@ -49,8 +49,8 @@ class AdminBookController extends AbstractController
             return $this->redirectToRoute('app_admin_book');
         }
 
-        return $this->render('admin/book/create.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('admin/book/create.html.twig', [
+            'form' => $form,
         ]);
     }
 
@@ -68,8 +68,8 @@ class AdminBookController extends AbstractController
             return $this->redirectToRoute('app_admin_book');
         }
 
-        return $this->render('admin/book/edit.html.twig', [
-            'form' => $form->createView(),
+        return $this->renderForm('admin/book/edit.html.twig', [
+            'form' => $form,
             'book' => $book,
         ]);
     }
